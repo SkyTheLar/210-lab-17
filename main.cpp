@@ -15,7 +15,7 @@ struct Node {
 };
 
 void output(Node *); //Display the contents of a linked list
-void addToHead(Node *, float); //Add a node to the head of a list
+void addToHead(Node *&, float); //Add a node to the head of a list
 void addToTail(Node *, float); //Add a node to the end of a list
 void insertNode(Node *, int); //Insert a node at a specified point
 void deleteNode(Node *, int); //Delete a node at a specified point
@@ -114,16 +114,27 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void addToHead(Node * hd, float v) {
+void addToHead(Node *&hd, float v) {
 	Node *newVal = new Node;
-	if (!hd) { // if this is the first node, it's the new head
-		hd = newVal;
-	    newVal->next = nullptr;
-	    newVal->value = v;
-	}
-	else { // its a second or subsequent node; place at the head
-	    newVal->next = hd;
-	    newVal->value = v;
-	    hd = newVal;
-	}
+	newVal->value = v;
+		if (!hd) { // if this is the first node, it's the new head
+		    newVal->next = nullptr;
+		}
+		else { // its a second or subsequent node; place at the head
+		    newVal->next = hd;
+		}
+	hd = newVal;
+}
+
+void addToTail(Node * hd, float v) {
+	Node *newVal = new Node;
+		if (!hd) { // if this is the first node, it's the new head
+			hd = newVal;
+		    newVal->next = nullptr;
+		    newVal->value = v;
+		}
+		else { // its a second or subsequent node; place at the end
+			newVal->next = nullptr;
+			newVal->value = v;
+		}
 }
