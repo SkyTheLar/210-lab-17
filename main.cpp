@@ -16,7 +16,7 @@ struct Node {
 
 void output(Node *); //Display the contents of a linked list
 void addToHead(Node *&, float); //Add a node to the head of a list
-void addToTail(Node *, float); //Add a node to the end of a list
+void addToTail(Node *&, float); //Add a node to the end of a list
 void insertNode(Node *, int); //Insert a node at a specified point
 void deleteNode(Node *, int); //Delete a node at a specified point
 void deleteList(Node *); //Delete an entire list
@@ -126,15 +126,19 @@ void addToHead(Node *&hd, float v) {
 	hd = newVal;
 }
 
-void addToTail(Node * hd, float v) {
+void addToTail(Node *&hd, float v) {
 	Node *newVal = new Node;
+	newVal->next = nullptr;
+	newVal->value = v;
 		if (!hd) { // if this is the first node, it's the new head
 			hd = newVal;
-		    newVal->next = nullptr;
-		    newVal->value = v;
 		}
 		else { // its a second or subsequent node; place at the end
-			newVal->next = nullptr;
-			newVal->value = v;
+			//traverse to the end of the list
+			Node * current = hd;
+			while(current->next)
+				current = current->next;
+			//point last node to new node
+			current->next = newVal;
 		}
 }
