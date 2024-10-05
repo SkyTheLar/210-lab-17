@@ -45,7 +45,7 @@ int main() {
     output(head);
 
     // insert a node
-    cout << "After which node to insert 10000? " << endl;
+    cout << "At which node to insert 10000? " << endl;
     output(head);
     cout << "Choice --> ";
     cin >> entry;
