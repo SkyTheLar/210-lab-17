@@ -17,7 +17,7 @@ struct Node {
 void output(Node *); //Display the contents of a linked list
 void addToHead(Node *&, float); //Add a node to the head of a list
 void addToTail(Node *&, float); //Add a node to the end of a list
-void insertNode(Node *, int); //Insert a node at a specified point
+void insertNode(Node *, float, int); //Insert a node at a specified point
 void deleteNode(Node *, int); //Delete a node at a specified point
 void deleteList(Node *); //Delete an entire list
 
@@ -141,4 +141,39 @@ void addToTail(Node *&hd, float v) {
 			//point last node to new node
 			current->next = newVal;
 		}
+}
+
+void insertNode(Node *hd, float v, int p) {
+	Node *newVal = new Node;
+	Node * current = hd;
+	Node *prev = hd;
+	newVal->value = v;
+
+	//find the value at position p
+	current = hd;
+	for (int i = 0; i < (p-1); i++)
+	    if (i == 0)
+	    	current = current->next;
+	    else {
+	    	current = current->next;
+	        prev = prev->next;
+	     }
+	//insert the node
+	newVal->next = current;
+	prev->next = newVal;
+}
+
+void deleteNode(Node * hd, int p) {
+	Node * current = hd;
+	Node *prev = hd;
+
+	//find the value at position p
+	current = hd;
+	for (int i = 0; i < (p-1); i++)
+	    if (i == 0)
+	    	current = current->next;
+	    else {
+	    	current = current->next;
+	        prev = prev->next;
+	    }
 }
