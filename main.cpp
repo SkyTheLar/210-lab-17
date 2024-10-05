@@ -28,10 +28,9 @@ int main() {
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
-        
 
         // adds node at head
-
+        addToHead(head, tmp_val);
     }
     output(head);
 
